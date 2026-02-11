@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>For Cipaaa 🎀</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        :root {
+            --ios-pink: #FF375F;
+            --ios-bg: #F2F2F7;
+            --glass: rgba(255, 255, 255, 0.8);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--ios-bg);
+            color: #1C1C1E;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Glassmorphism Effect */
+        .apple-blur {
+            background: var(--glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 0.5px solid rgba(0,0,0,0.1);
+        }
+
+        /* Dynamic Island */
+        .dynamic-island-container {
+            position: fixed;
+            top: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .dynamic-island {
+            background: #000;
+            width: 125px;
+            height: 36px;
+            border-radius: 20px;
+            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .dynamic-island:active {
+            width: 90%;
+            height: 85px;
+            border-radius: 35px;
+        }
+
+        /* iOS Card & Group */
+        .ios-inset-group {
+            background: #FFFFFF;
+            border-radius: 14px;
+            margin: 0 16px 20px 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .ios-cell {
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 0.5px solid #E5E5E7;
+            transition: background 0.2s;
+        }
+        .ios-cell:active { background-color: #F2F2F7; }
+        .ios-cell:last-child { border-bottom: none; }
+
+        /* Floating Flowers */
+        .flower {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.7;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        /* Chat Window */
+        #chat-interface {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: #fff;
+            z-index: 10000;
+            flex-direction: column;
+            animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes slideIn {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        .bubble-bot {
+            background: #E9E9EB;
+            border-radius: 18px 18px 18px 4px;
+            align-self: flex-start;
+        }
+        .bubble-user {
+            background: var(--ios-pink);
+            color: white;
+            border-radius: 18px 18px 4px 18px;
+            align-self: flex-end;
+        }
+
+        /* Gallery */
+        .gallery-scroll {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 15px;
+            padding: 10px 20px;
+            scrollbar-width: none;
+        }
+        .gallery-scroll::-webkit-scrollbar { display: none; }
+        
+        .gallery-item {
+            scroll-snap-align: center;
+            min-width: 280px;
+            height: 380px;
+            border-radius: 24px;
+            background: #E5E5EA;
+            overflow: hidden;
+            position: relative;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="pb-32">
+
+    <div class="dynamic-island-container">
+        <div class="dynamic-island group" onclick="triggerConfetti()">
+            <div class="text-[11px] font-medium group-active:hidden">Cipaaa's Phone 🎀</div>
+            <div class="hidden group-active:flex flex-col items-center animate-pulse">
+                <span class="text-xs font-bold">Connected with Aldo</span>
+                <span class="text-[10px] text-pink-400">Love: 100% 🔋</span>
+            </div>
+        </div>
+    </div>
+
+    <header class="px-6 pt-20 pb-4">
+        <p class="text-[11px] font-extrabold text-[#FF375F] tracking-[0.2em] uppercase mb-1">Private Access</p>
+        <h1 class="text-4xl font-bold tracking-tight text-[#1C1C1E]">Cipaaa</h1>
+    </header>
+
+    <p class="px-6 mb-2 text-[13px] text-gray-400 font-bold uppercase tracking-wider">Memory Lane</p>
+    <div class="gallery-scroll">
+        <div class="gallery-item shadow-lg border-[6px] border-white">
+            <img src="images/as.jpeg" alt="Our Pretty Moment" onerror="this.parentElement.style.display='flex'; this.parentElement.innerHTML='<span class=\"m-auto text-gray-400\">Image Not Found</span>'">
+            <div class="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/70 to-transparent text-white">
+                <p class="text-sm font-semibold">Our Pretty Moment ✨</p>
+            </div>
+        </div>
+        <div class="gallery-item shadow-lg border-[6px] border-white">
+            <img src="images/as2.jpeg" alt="Senyum Terfavorit" onerror="this.parentElement.style.display='flex'; this.parentElement.innerHTML='<span class=\"m-auto text-gray-400\">Image Not Found</span>'">
+            <div class="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/70 to-transparent text-white">
+                <p class="text-sm font-semibold">Senyum Terfavorit 🌸</p>
+            </div>
+        </div>
+    </div>
+
+    <main class="mt-8">
+        <p class="px-6 mb-2 text-[13px] text-gray-500 font-semibold uppercase tracking-wide">Information</p>
+        <div class="ios-inset-group">
+            <div class="ios-cell">
+                <div class="flex items-center">
+                    <div class="bg-pink-100 p-2 rounded-xl mr-3 text-lg">👤</div>
+                    <span class="text-[16px] font-medium">The User</span>
+                </div>
+                <span class="text-gray-500">Syipa Salsabila 👑</span>
+            </div>
+            <div class="ios-cell">
+                <div class="flex items-center">
+                    <div class="bg-blue-100 p-2 rounded-xl mr-3 text-lg">🏠</div>
+                    <span class="text-[16px] font-medium">Location</span>
+                </div>
+                <span class="text-gray-500">In Aldo's Heart ❤️</span>
+            </div>
+        </div>
+
+        <p class="px-6 mb-2 text-[13px] text-gray-500 font-semibold uppercase tracking-wide">Interactive</p>
+        <div class="ios-inset-group">
+            <div class="ios-cell cursor-pointer" onclick="openChat()">
+                <div class="flex items-center">
+                    <div class="bg-green-100 p-2 rounded-xl mr-3 text-lg">💬</div>
+                    <span class="text-[16px] font-medium">Talk to Aldo AI</span>
+                </div>
+                <span class="text-gray-400">〉</span>
+            </div>
+            <div class="ios-cell cursor-pointer" onclick="triggerConfetti()">
+                <div class="flex items-center">
+                    <div class="bg-orange-100 p-2 rounded-xl mr-3 text-lg">🎉</div>
+                    <span class="text-[16px] font-medium">Surprise Effect</span>
+                </div>
+                <span class="text-[#FF375F] font-bold">Magic</span>
+            </div>
+        </div>
+
+        <div class="px-4 mt-8">
+            <button onclick="bigSurprise()" class="w-full bg-[#FF375F] text-white py-4 rounded-2xl font-bold text-lg shadow-xl active:scale-[0.97] transition-all duration-200">
+                Love Letter for You 💌
+            </button>
+        </div>
+    </main>
+
+    <div id="chat-interface">
+        <div class="apple-blur p-4 flex items-center pt-12">
+            <button onclick="closeChat()" class="text-[#FF375F] font-bold text-lg">〈 Back</button>
+            <div class="flex-1 text-center pr-10">
+                <div class="w-9 h-9 bg-pink-100 rounded-full mx-auto flex items-center justify-center mb-1 border border-pink-200">🤖</div>
+                <span class="font-bold text-sm block">Aldo's Assistant</span>
+            </div>
+        </div>
+        <div id="chat-content" class="flex-1 overflow-y-auto p-4 flex flex-col space-y-4 bg-[#FFFFFF]">
+            <div class="bubble-bot p-4 max-w-[80%] text-[14px] leading-relaxed shadow-sm">
+                Halo Syipa cantik! Aku asisten otomatis buatan Aldo. Mau tanya sesuatu tentang Aldo atau minta kata-kata semangat? 😊
+            </div>
+        </div>
+        <div class="p-4 bg-white border-t pb-10 flex items-center space-x-3">
+            <input type="text" id="chatInput" placeholder="iMessage" class="flex-1 bg-[#F2F2F7] rounded-full px-5 py-2.5 outline-none text-sm border border-gray-200 focus:border-pink-300 transition-all">
+            <button onclick="sendMessage()" class="bg-[#FF375F] text-white w-9 h-9 rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-all">↑</button>
+        </div>
+    </div>
+
+    <nav class="apple-blur fixed bottom-0 left-0 right-0 h-24 flex justify-around items-center px-10 pb-8 z-40">
+        <div class="flex flex-col items-center">
+            <span class="text-2xl">🏡</span>
+            <span class="text-[11px] font-bold mt-1 text-[#FF375F]">Today</span>
+        </div>
+        <div class="flex flex-col items-center opacity-40" onclick="alert('Coming soon: Our Library!')">
+            <span class="text-2xl">📸</span>
+            <span class="text-[11px] font-medium mt-1">Library</span>
+        </div>
+        <div class="flex flex-col items-center opacity-40" onclick="openChat()">
+            <span class="text-2xl">💬</span>
+            <span class="text-[11px] font-medium mt-1">Chat</span>
+        </div>
+    </nav>
+
+<script>
+    // 1. Floating Flowers
+    function createFlower() {
+        const flowers = ['🌸', '🌺', '🌹', '✨', '💖', '🌷'];
+        const flower = document.createElement('div');
+        flower.className = 'flower';
+        flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+        flower.style.left = Math.random() * 100 + 'vw';
+        flower.style.fontSize = Math.random() * 20 + 15 + 'px';
+        flower.style.top = '-50px';
+        flower.style.animation = `fall ${Math.random() * 3 + 4}s linear forwards`;
+        document.body.appendChild(flower);
+        setTimeout(() => flower.remove(), 6000);
+    }
+    setInterval(createFlower, 1000);
+
+    // 2. Chat Logic
+    function openChat() { document.getElementById('chat-interface').style.display = 'flex'; }
+    function closeChat() { document.getElementById('chat-interface').style.display = 'none'; }
+
+    function sendMessage() {
+        const input = document.getElementById('chatInput');
+        const container = document.getElementById('chat-content');
+        const val = input.value.toLowerCase().trim();
+        if(!val) return;
+
+        container.innerHTML += `<div class="bubble-user p-4 max-w-[80%] text-[14px] shadow-sm animate-fade-in">${input.value}</div>`;
+        let reply = "";
+
+        if(val.includes("sayang") && val.includes("ga")) {
+            reply = "Aldo sayang BANGET sama Syipa. Itu udah hukum alam, nggak bisa diganggu gugat! ❤️";
+        } else if(val.includes("lagi apa")) {
+            reply = "Tadi sih katanya lagi kangen berat sama kamu. Coba deh chat orangnya langsung! 📱";
+        } else if(val.includes("cantik ga")) {
+            reply = "Gak ada obat! Kamu itu definisi 'cantik' di kamus hidupnya Aldo. 😍";
+        } else if(val.includes("halo") || val.includes("p")) {
+            reply = "Halo Syipa cantik! Aku siap menemani kegabutanmu. 😊";
+        } else if(val.includes("kangen")) {
+            reply = "Sabar ya, Aldo juga kangennya udah mentok nih! ⚡❤️";
+        } else {
+            reply = "Apapun itu, intinya Aldo peduli banget sama kamu. Ada pesan lain? 💌";
+        }
+
+        setTimeout(() => {
+            const typingId = 'typing-' + Date.now();
+            container.innerHTML += `<div class="bubble-bot p-4 max-w-[80%] text-[14px] italic opacity-50" id="${typingId}">typing...</div>`;
+            container.scrollTop = container.scrollHeight;
+            
+            setTimeout(() => {
+                const typing = document.getElementById(typingId);
+                if(typing) typing.remove();
+                container.innerHTML += `<div class="bubble-bot p-4 max-w-[80%] text-[14px] leading-relaxed shadow-sm">${reply}</div>`;
+                container.scrollTop = container.scrollHeight;
+            }, 1000);
+        }, 300);
+        input.value = "";
+    }
+
+    // 3. Effects
+    function triggerConfetti() {
+        confetti({
+            particleCount: 100,
+            spread: 60,
+            origin: { y: 0.6 },
+            colors: ['#FF375F', '#FFB6C1', '#FFFFFF']
+        });
+    }
+
+    function bigSurprise() {
+        triggerConfetti();
+        setTimeout(() => {
+            alert("Syipa Salsabila, web ini dibuat dengan sepenuh hati oleh Aldo khusus buat kamu! ❤️");
+        }, 500);
+    }
+
+    // Enter Key
+    document.getElementById('chatInput').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+</script>
+</body>
+</html>
